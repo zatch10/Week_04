@@ -8,7 +8,7 @@ used for building user interfaces. One of its most powerful features and the sou
 React's speed involves the virtual DOM. In addition, the library supports custom elements
 called Components, which allows for more modular, reusable code.
 
-# WHat is the DOM ?
+# What is the DOM ?
 The Document Object Model is a programming interface for HTML. It represents a document as 
 nodes and objects, allowing you to manipulate them using Javascript. To manipulate it, you would do something like this
 ```Javascript
