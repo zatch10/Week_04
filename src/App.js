@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ToDoListItem from './components/toDoListItem'
 
 class App extends Component {
   render() {
@@ -7,9 +8,10 @@ class App extends Component {
       <h1>Hello World!</h1>
       <h1>Todo List</h1>
         <ol>
-          <li> Walk into latea</li>
-          <li> Get boba</li>
-          <li> Get more boba</li>
+          <ToDoListItem todo="Walk into latea"></ToDoListItem>
+          <ToDoListItem todo="Get boba"></ToDoListItem>
+          <ToDoListItem todo="Get more boba"></ToDoListItem>
+          
         </ol>
       </div>
     );
