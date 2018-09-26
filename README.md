@@ -1,58 +1,53 @@
 # Week_04
 Intro to React
 
-# react-bootcamp-fa18
 
-### Components
-As you saw in the last example, manually writing each item in the TODO list quickly
-became a hassle. Furthermore, simply having an HTML list item means that there's
-nothing much else that can be done with the TODO list or the list items themselves.
-However, with a React Component, which are essentially the same as functions and
-take a parameter called props, additional dynamic features can be added to your list
-items. In addition, the code that's in the component can also be reused by
-using the component in a similar manner to using HTML tags, leading to modular,
-maintainable, and more readable code.
+## What is state?
 
-In React, components can also be written as a function:
-```javascript
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>
-}
+Every react component has a state is a set of variables that determines how a component renders and behaves. It is scoped so that only the component has access to those variables. To share variables betweeen componenets, you would use props. 
+
+Here's an analogy to explain it. You can think of a thermometer is a component, where the state is the temperapture it shows. If you stick it in a freezer, the temperature will go down. If you stick it on the stove, the temperature will go up. The component will never change, its still a thermomemeter, but its state will change depending on where you put it. 
+
+## How to get items from state to display. 
+
+The first thing you would do is define the elements in state. Inside your compoenent, add these lines
+
+```Javascript
+ state = {
+    todoListTitle: "My Todo List"
+  };
 ```
 
-This is a valid component since it takes a single parameter `props` and returns
-a React element (remember that the HTML isn't actually HTML with JSX)
-
-However, another way to write components in React involves creating a class:
-```javascript
-class Welcome extends React.Component {
-  render() {
-    return <h1>Hello, {this.props.name}</h1>
-  }
-}
-```
-
-This is equivalent to the functional method and the props parameter is still passed in.
-Also note that the `this` keyword is used with classes, indicating that multiple
-instances of Welcome can be rendered with different props - leading to the same
-element having different behaviors.
-
-### What are properties (props)?
-Every component created in React can be customized when they're created through
-receiving creation parameters. These parameters are called props, and are passed
-into a React component through specifying the property and its value. For example:
-
-```javascript
-class App extends React.Component {
-  render() {
+This defines the title of the todo list in state. Insider the render method, in the jsx, you can execute commands as long as they are in curly braces. So if I wanted to access the title from state, I would say ```{this.state.todoListTitle}``` inside of the render method. Look at the example below. 
+```Javascript
+render() {
     return (
-      <Welcome name='Aria'/>
-      <Welcome name='Roy'/>
-      <Welcome name='Megha'/>
-    )
+      <div>
+        <h1>{this.state.todoListTitle}</h1>
+      </div>
+    );
   }
-}
 ```
 
-Each rendering of the Welcome component will receive a different value of the
-name property, and thus will output a different Hello message accordingly.
+The nice thing about react is that you can modify the state without rerendering the entire page. Let's add a button to add more to you todo list. The button can call a function on click, which in this case is add parameter. 
+
+```Javascript
+ <button onClick={this.addParameter}> Add todo</button>
+```
+
+## Modifying State
+
+Once we have defined the button, we have to write the function that handles what to do. We want to take the previous list of todos, add the new todo, and then update the state. This is written below. 
+
+```Javascript
+addParameter = () => {
+    this.setState({
+      todos: [...this.state.todos, "Get more boba"]
+    })
+  };
+```  
+
+The synatax ```...this.state.todos``` gets the list of todos currently in the state. The synatax ```[...this.state.todos, "Get more boba"]``` will add the todo ```"Get more boba"``` to the todo list, and return it as a new list. 
+
+By wrapping this in  ``` this.setState({ })```, it tells react to rerender the parts of the code that depend on the state so your website reloads in real time. 
+
